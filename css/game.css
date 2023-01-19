@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box
+}
+
+h1 {
+    text-align: center;
+}
+
+#myCanvas {
+    width: 540px;
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+}
+
+#myCanvas:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+}
+
+.game-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
