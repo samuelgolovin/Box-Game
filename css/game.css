@@ -6,16 +6,17 @@ h1 {
     text-align: center;
 }
 
-#myCanvas {
+.game-area {
+    display: flex;
+    justify-content: center;
+}
+
+.game-area-canvas {
+    width: 640px;
+    height: 480px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
 }
 
-#myCanvas:hover {
+.game-area-canvas:hover {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
-}
-
-.game-area {
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
