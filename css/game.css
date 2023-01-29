@@ -1,3 +1,8 @@
+:root {
+    --canvasWidth: 640px;
+    --canvasHeight: 480px;
+}
+
 * {
     box-sizing: border-box
 }
@@ -6,16 +11,31 @@ h1 {
     text-align: center;
 }
 
-.game-area {
+body {
+    background: rgb(241,240,238);
+    font-size: 18pt;
+    font-family: "Brush Script MT", cursive, sans-serif;
+}
+
+.game-container {
     display: flex;
+    justify-content: center;
+}
+
+.game-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 #game-area-canvas {
     position: relative;
-    width: 640px;
-    height: 480px;
+    border-radius: 5px;
+    width: var(--canvasWidth);
+    height: var(--canvasHeight);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+    background-color: rgb(122,184,214);
 }
 
 #game-area-canvas:hover {
@@ -24,5 +44,27 @@ h1 {
 
 .box {
     position: absolute;
-    outline: 1px solid red;
+    outline: 2px solid rgb(224,71,76);
+    outline-offset: -4px;
+    background-color: rgb(177,26,33);
+    border-radius: 5px;
+}
+
+.timer {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    top: 0;
+    right: 0;
+    color: rgb(241,240,238);
+    position: absolute;
+}
+
+.new-game-button {
+    position: absolute;
+    text-align: center;
+    color: rgb(241,240,238);
+    outline: 2px solid rgb(224,71,76);
+    outline-offset: -4px;
+    background-color: rgb(177,26,33);
+    border-radius: 5px;
 }

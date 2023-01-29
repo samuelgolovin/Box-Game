@@ -3,27 +3,60 @@
 //Samuel Golovin
 
 //Variables that control aspects of the game are make the game easier to manipulate and tweak
-var boxSize = 50;           //size of the boxes
-var boxCount = 20;
-
+var canvasHeight = 640;     //canvas size
+var canvasWidth = 480;
+var newGameButtonWidth = 175;
+var newGameButtonHeight = 75;
+var boxSize = 75;           //size of the boxes
+var boxCount = 2;           //num of boxes in game
+var firstClick = true;      //whether or not the game has started
+var timerClock = 0;         //allows for the time to be saved and used in other places
+var startTime1, interval;
 
 window.onload = function() {
-    function spawnBoxes() {
-        //gets the game canvas and assigns it to gameCanvas variable
-        var gameCanvas = document.getElementById("game-area-canvas");
+    function newGameMenu() {
+        //gets game canvas and assigns it to gameCanvas variable
+        let gameCanvas = document.getElementById("game-area-canvas");
+        gameCanvas.innerHTML = ""; 
 
-        //destroys boxes if any are still there
+        let newGameButton = document.createElement("button");
+        newGameButton.className = "new-game-button";
+        newGameButton.id = "new-game-button";
+        newGameButton.innerHTML = "Start Game"
+        newGameButton.style.height = newGameButtonHeight + "px";
+        newGameButton.style.width = newGameButtonWidth + "px";
+        newGameButton.style.top = (300) + "px";
+        newGameButton.style.left = (canvasWidth - newGameButtonWidth) + "px";
+
+        gameCanvas.appendChild(newGameButton);
+        console.log(newGameButton);
+    }
+
+    function startNewGame() {
+        //gets the game canvas and assigns it to gameCanvas variable
+        let gameCanvas = document.getElementById("game-area-canvas");
+
+        //resets the canvas
         gameCanvas.innerHTML = "";
+
+        //sets up the timer
+        //creates timer div
+        let timer = document.createElement("div");
+        timer.className = "timer";
+        //add div to the gameCanvas
+        gameCanvas.appendChild(timer);
+        timer.innerHTML = "Time: 0.000 s";
+
         for(var i = 0; i < boxCount; i++) {
 
             //creates a new box game element
-            var box = document.createElement("div");
+            let box = document.createElement("div");
             box.className = "box";
 
             //places boxes in random positions on the game canvas
-            box.style.left = parseInt(Math.random() * (640 - boxSize)) + "px";
-            box.style.top = parseInt(Math.random() * (480 - boxSize)) + "px";
-            box.style.backgroundColor = "#000000";
+            box.style.left = parseInt(Math.random() * (canvasHeight - boxSize)) + "px";
+            box.style.top = 0.5*boxSize + parseInt(Math.random() * (canvasWidth - 1.5*boxSize)) + "px";
+            
             box.style.width = boxSize + "px";
             box.style.height = boxSize + "px";
 
@@ -34,15 +67,60 @@ window.onload = function() {
             gameCanvas.appendChild(box);
 
             //used this to figure out why the boxes wouldn't spawn
-            console.log(box);
+            //console.log(box);
             //was because I need to give them a width and height
             //they were there, just couldn't see them :/
         }
     }
 
     function boxClicked() {
-        console.log("Box clicked");
-    }
+        //if this is the first box to be clicked then set the variable
+        //also, since it's the first box,  
+        if(firstClick == true) {
+            //starts the timer
+            //startTime = performance.now();
+            //sets variable that resets boxCount after game finishes
+            originalNumOfBoxes = boxCount;
+            //will not allow for this code to run again until new game resets the game
+            firstClick = false;
+            //
+            //var timer = document.getElementById("timer");
+            //.innerHTML = "Time: " + startTime;
 
-    spawnBoxes();
+            startTime = Date.now();
+
+            interval = setInterval(function() {
+                elapsedTime = Date.now() - startTime;
+                document.getElementById("timer").innerHTML = "Time: " + (elapsedTime / 1000).toFixed(3) + " s";
+            }, 100);
+        }
+        
+        //deletes the box when it is clicked and subtracts from the boxCount
+        this.parentNode.removeChild(this);
+        boxCount--;
+
+        //checks to see of any boxes left and if none then stops the timer
+        //also does math to find the time it took to click all of the boxes
+        if (boxCount <= 0) {
+            //let endTime = performance.now();
+            //time in ms
+            //let timeDiff = parseInt(endTime - startTime);
+            //changes time to seconds
+            //timerClock = timeDiff/1000;
+            clearInterval(interval);
+
+            //shows the time to console
+            console.log("Time: " + (elapsedTime / 1000).toFixed(3) + " s");
+            //sets the boxCount back to its original number in preperation for a new round
+            boxCount = originalNumOfBoxes;
+        }
+
+        //used this to see if the function worked
+        //console.log("Box clicked");
+    }
+        
+    //before the game starts, give the option to start a new game.
+        //this will also show a list of your scores, etc.
+        newGameMenu();
+        //startNewGame();
 };
