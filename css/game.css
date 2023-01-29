@@ -60,6 +60,8 @@ body {
 }
 
 .new-game-button {
+    font-size: 18pt;
+    font-family: "Brush Script MT", cursive, sans-serif;
     position: absolute;
     text-align: center;
     color: rgb(241,240,238);
@@ -67,4 +69,17 @@ body {
     outline-offset: -4px;
     background-color: rgb(177,26,33);
     border-radius: 5px;
+    transform: scale(1);
+}
+
+.new-game-button:hover {
+    transform: scale(1.05);
+}
+
+.instructions {
+    background-color: rbga(0, 0, 0, 0.6);
+    outline: 1px solid red;
+    text-align: center;
+    justify-content: center;
+    width: 75%;
 }

@@ -19,6 +19,15 @@ window.onload = function() {
         let gameCanvas = document.getElementById("game-area-canvas");
         gameCanvas.innerHTML = ""; 
 
+        let instructions = document.createElement("div");
+
+        instructions.className = "instructions";
+        instructions.innerHTML = "When Start Game is press, the boxes will spawn. The timer will start as soon you click the first box!";
+        instructions.style.width = 420 + "px";
+        instructions.style.top = 200 + "px";
+        instructions.style.left = 300 + "px";
+        gameCanvas.appendChild(instructions);
+
         let newGameButton = document.createElement("button");
         newGameButton.className = "new-game-button";
         newGameButton.id = "new-game-button";
@@ -26,10 +35,11 @@ window.onload = function() {
         newGameButton.style.height = newGameButtonHeight + "px";
         newGameButton.style.width = newGameButtonWidth + "px";
         newGameButton.style.top = (300) + "px";
-        newGameButton.style.left = (canvasWidth - newGameButtonWidth) + "px";
+        newGameButton.style.left = (canvasWidth * 0.5) + "px";
+        newGameButton.style.top = (canvasHeight * 0.5) + "px";
+        newGameButton.addEventListener("click", startNewGame);
 
         gameCanvas.appendChild(newGameButton);
-        console.log(newGameButton);
     }
 
     function startNewGame() {
@@ -43,6 +53,7 @@ window.onload = function() {
         //creates timer div
         let timer = document.createElement("div");
         timer.className = "timer";
+        timer.id = "timer";
         //add div to the gameCanvas
         gameCanvas.appendChild(timer);
         timer.innerHTML = "Time: 0.000 s";
@@ -61,7 +72,7 @@ window.onload = function() {
             box.style.height = boxSize + "px";
 
             //makes it so that when a box is clicked, a function is called that does something to it
-            box.addEventListener("mouseup", boxClicked);
+            box.addEventListener("click", boxClicked);
 
             //add the game element to the game canvas
             gameCanvas.appendChild(box);
@@ -83,12 +94,9 @@ window.onload = function() {
             originalNumOfBoxes = boxCount;
             //will not allow for this code to run again until new game resets the game
             firstClick = false;
-            //
-            //var timer = document.getElementById("timer");
-            //.innerHTML = "Time: " + startTime;
-
+            //starts timer
             startTime = Date.now();
-
+            //makes timer visible on screen and updates it
             interval = setInterval(function() {
                 elapsedTime = Date.now() - startTime;
                 document.getElementById("timer").innerHTML = "Time: " + (elapsedTime / 1000).toFixed(3) + " s";
@@ -102,11 +110,7 @@ window.onload = function() {
         //checks to see of any boxes left and if none then stops the timer
         //also does math to find the time it took to click all of the boxes
         if (boxCount <= 0) {
-            //let endTime = performance.now();
-            //time in ms
-            //let timeDiff = parseInt(endTime - startTime);
-            //changes time to seconds
-            //timerClock = timeDiff/1000;
+            //stops the timer
             clearInterval(interval);
 
             //shows the time to console
