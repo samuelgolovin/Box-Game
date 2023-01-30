@@ -13,19 +13,25 @@ var firstClick = true;      //whether or not the game has started
 var timerClock = 0;         //allows for the time to be saved and used in other places
 var startTime1, interval;
 
+
+
+
 window.onload = function() {
+    //getting the elements from DOM
+    var gameCanvas = document.getElementById("game-area-canvas");
+    
     function newGameMenu() {
         //gets game canvas and assigns it to gameCanvas variable
-        let gameCanvas = document.getElementById("game-area-canvas");
+        
         gameCanvas.innerHTML = ""; 
 
         let instructions = document.createElement("div");
 
         instructions.className = "instructions";
-        instructions.innerHTML = "When Start Game is press, the boxes will spawn. The timer will start as soon you click the first box!";
+        instructions.innerHTML = "When Start Game is press, the boxes will spawn. A timer will start as soon you click the first box!";
         instructions.style.width = 420 + "px";
-        instructions.style.top = 200 + "px";
-        instructions.style.left = 300 + "px";
+        instructions.style.top = 150 + "px";
+        instructions.style.left = 120 + "px";
         gameCanvas.appendChild(instructions);
 
         let newGameButton = document.createElement("button");
@@ -44,19 +50,19 @@ window.onload = function() {
 
     function startNewGame() {
         //gets the game canvas and assigns it to gameCanvas variable
-        let gameCanvas = document.getElementById("game-area-canvas");
+        
 
         //resets the canvas
         gameCanvas.innerHTML = "";
 
         //sets up the timer
         //creates timer div
-        let timer = document.createElement("div");
-        timer.className = "timer";
-        timer.id = "timer";
+        let timerText = document.createElement("div");
+        timerText.className = "timer-text";
+        timerText.id = "timer-text";
         //add div to the gameCanvas
-        gameCanvas.appendChild(timer);
-        timer.innerHTML = "Time: 0.000 s";
+        gameCanvas.appendChild(timerText);
+        timerText.innerHTML = "Time: 0.000 s";
 
         for(var i = 0; i < boxCount; i++) {
 
@@ -95,12 +101,7 @@ window.onload = function() {
             //will not allow for this code to run again until new game resets the game
             firstClick = false;
             //starts timer
-            startTime = Date.now();
-            //makes timer visible on screen and updates it
-            interval = setInterval(function() {
-                elapsedTime = Date.now() - startTime;
-                document.getElementById("timer").innerHTML = "Time: " + (elapsedTime / 1000).toFixed(3) + " s";
-            }, 100);
+            startTimer();
         }
         
         //deletes the box when it is clicked and subtracts from the boxCount
@@ -111,17 +112,38 @@ window.onload = function() {
         //also does math to find the time it took to click all of the boxes
         if (boxCount <= 0) {
             //stops the timer
-            clearInterval(interval);
+            stopTimer();
 
             //shows the time to console
             console.log("Time: " + (elapsedTime / 1000).toFixed(3) + " s");
+            elapsedTime = 0;
             //sets the boxCount back to its original number in preperation for a new round
+            newGameMenu();
             boxCount = originalNumOfBoxes;
         }
 
         //used this to see if the function worked
         //console.log("Box clicked");
     }
+
+var timer = null;
+
+    function startTimer() {
+        startTime = Date.now();
+        //makes timer visible on screen and updates it
+        timer = setInterval(function() {
+            elapsedTime = Date.now() - startTime;
+            document.getElementById("timer-text").textContent = "Time: " + (elapsedTime / 1000).toFixed(3) + " s";
+        }, 100);
+    }
+
+    function stopTimer() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+    
         
     //before the game starts, give the option to start a new game.
         //this will also show a list of your scores, etc.

@@ -14,7 +14,7 @@ h1 {
 body {
     background: rgb(241,240,238);
     font-size: 18pt;
-    font-family: "Brush Script MT", cursive, sans-serif;
+    font-family: Tahoma, Verdana, sans-serif;
 }
 
 .game-container {
@@ -50,7 +50,7 @@ body {
     border-radius: 5px;
 }
 
-.timer {
+.timer-text {
     margin-left: 0.25em;
     margin-right: 0.25em;
     top: 0;
@@ -61,7 +61,7 @@ body {
 
 .new-game-button {
     font-size: 18pt;
-    font-family: "Brush Script MT", cursive, sans-serif;
+    font-family: Tahoma, Verdana, sans-serif;
     position: absolute;
     text-align: center;
     color: rgb(241,240,238);
@@ -77,9 +77,11 @@ body {
 }
 
 .instructions {
-    background-color: rbga(0, 0, 0, 0.6);
-    outline: 1px solid red;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.5em;
+    border-radius: 5px;
     text-align: center;
     justify-content: center;
-    width: 75%;
+
 }
