@@ -10,12 +10,11 @@ window.onload = function() {
     var newGameButtonWidth = 175;
     var newGameButtonHeight = 75;
     var boxSize = 75;
-    var boxCount = 2;
+    var boxCount = 20;
     var newGame = true;
 
-    var [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+    var [milliseconds,seconds] = [0,0];
     var timerRef = document.getElementById("timer-text");
-    console.log(timerRef)
     var int = null; 
     
     function newGameMenu() {
@@ -25,7 +24,7 @@ window.onload = function() {
         let instructions = document.createElement("div");
 
         instructions.className = "instructions";
-        instructions.innerHTML = "When Start Game is press, the boxes will spawn. A timer will start as soon you click the first box!";
+        instructions.innerHTML = "When Start Game is press, boxes will spawn. The timer will start as soon you click the first box!";
         instructions.style.width = 420 + "px";
         instructions.style.top = 150 + "px";
         instructions.style.left = 110 + "px";
@@ -61,7 +60,7 @@ window.onload = function() {
             box.className = "box";
 
             box.style.left = parseInt(Math.random() * (canvasHeight - boxSize)) + "px";
-            box.style.top = 0.5*boxSize + parseInt(Math.random() * (canvasWidth - 1.5*boxSize)) + "px";
+            box.style.top = parseInt(Math.random() * (canvasWidth - 1.5*boxSize)) + "px";
             box.style.width = boxSize + "px";
             box.style.height = boxSize + "px";
 
@@ -99,7 +98,6 @@ window.onload = function() {
             clearInterval(int);
         }
         int = setInterval(displayTimer, 10);
-        console.log(int)
     }
 
     function stopTimer() {
@@ -119,8 +117,7 @@ window.onload = function() {
     
         timerRef.innerHTML = "Time: " + s + "." + ms;
     }
-    
-        
-        newGameMenu();
-        //startNewGame();
+
+    newGameMenu();
+
 };

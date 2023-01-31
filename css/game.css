@@ -48,6 +48,7 @@ body {
     outline-offset: -4px;
     background-color: rgb(177,26,33);
     border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 10px;
 }
 
 .timer-text {
