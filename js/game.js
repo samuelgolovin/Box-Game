@@ -2,20 +2,21 @@
 //Thanks for checking out my code!
 //Samuel Golovin
 
-var canvasHeight = 640;
-var canvasWidth = 480;
-var newGameButtonWidth = 175;
-var newGameButtonHeight = 75;
-var boxSize = 75;
-var boxCount = 2;
-var firstClick = true;
-var timer = null; 
-
-
-
-
 window.onload = function() {
     var gameCanvas = document.getElementById("game-area-canvas");
+
+    var canvasHeight = 640;
+    var canvasWidth = 480;
+    var newGameButtonWidth = 175;
+    var newGameButtonHeight = 75;
+    var boxSize = 75;
+    var boxCount = 2;
+    var newGame = true;
+
+    var [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+    var timerRef = document.getElementById("timer-text");
+    console.log(timerRef)
+    var int = null; 
     
     function newGameMenu() {
         
@@ -45,13 +46,15 @@ window.onload = function() {
     }
 
     function startNewGame() {
+        timerRef.innerHTML = "Time: 0.000";
+
         gameCanvas.innerHTML = "";
 
-        let timerText = document.createElement("div");
-        timerText.className = "timer-text";
-        timerText.id = "timer-text";
-        gameCanvas.appendChild(timerText);
-        timerText.innerHTML = "Time: 0.000 s";
+        // let timerText = document.createElement("div");
+        // timerText.className = "timer-text";
+        // timerText.id = "timer-text";
+        // gameCanvas.appendChild(timerText);
+        // timerText.innerHTML = "Time: 0.000 s";
 
         for(var i = 0; i < boxCount; i++) {
             let box = document.createElement("div");
@@ -70,10 +73,10 @@ window.onload = function() {
 
     function boxClicked() {
 
-        if(firstClick == true) {
+        if(newGame == true) {
             originalNumOfBoxes = boxCount;
 
-            firstClick = false;
+            newGame = false;
 
             startTimer();
         }
@@ -84,27 +87,37 @@ window.onload = function() {
         if (boxCount <= 0) {
             stopTimer();
 
-            console.log("Time: " + (elapsedTime / 1000).toFixed(3) + " s");
-            elapsedTime = 0;
-
             newGameMenu();
+            
             boxCount = originalNumOfBoxes;
+            newGame = true;
         }
     }
 
     function startTimer() {
-        startTime = Date.now();
-        timer = setInterval(function() {
-            elapsedTime = Date.now() - startTime;
-            document.getElementById("timer-text").textContent = "Time: " + (elapsedTime / 1000).toFixed(3) + " s";
-        }, 100);
+        if(int!==null){
+            clearInterval(int);
+        }
+        int = setInterval(displayTimer, 10);
+        console.log(int)
     }
 
     function stopTimer() {
-        if (timer) {
-            clearInterval(timer);
-            timer = null;
+        clearInterval(int);
+        [milliseconds,seconds] = [0,0];
+    }
+
+    function displayTimer(){
+        milliseconds += 10;
+        if(milliseconds == 1000){
+            milliseconds = 0;
+            seconds++;
         }
+
+        let s = seconds < 10 ? "" + seconds : seconds;
+        let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+    
+        timerRef.innerHTML = "Time: " + s + "." + ms;
     }
     
         
