@@ -1,6 +1,10 @@
 :root {
     --canvasWidth: 640px;
     --canvasHeight: 480px;
+    --darkRed: rgb(177,26,33);
+    --lightRed: rgb(224,71,76);
+    --blue: rgb(122,184,214);
+    --lightGray: rgb(241,240,238);
 }
 
 * {
@@ -65,7 +69,7 @@ body {
     font-family: Tahoma, Verdana, sans-serif;
     position: absolute;
     text-align: center;
-    color: rgb(241,240,238);
+    color: var(--lightGray);
     outline: 2px solid rgb(224,71,76);
     outline-offset: -4px;
     background-color: rgb(177,26,33);
@@ -79,7 +83,8 @@ body {
 
 .instructions {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--lightGray);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 0.5em;
     border-radius: 5px;
     text-align: center;

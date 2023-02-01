@@ -26,7 +26,7 @@ window.onload = function() {
         instructions.className = "instructions";
         instructions.innerHTML = "When Start Game is press, boxes will spawn. The timer will start as soon you click the first box!";
         instructions.style.width = 420 + "px";
-        instructions.style.top = 150 + "px";
+        instructions.style.top = 120 + "px";
         instructions.style.left = 110 + "px";
         gameCanvas.appendChild(instructions);
 
@@ -38,7 +38,7 @@ window.onload = function() {
         newGameButton.style.width = newGameButtonWidth + "px";
         newGameButton.style.top = (300) + "px";
         newGameButton.style.left = (canvasWidth * 0.5) + "px";
-        newGameButton.style.top = (canvasHeight * 0.5) + "px";
+        newGameButton.style.top = (canvasHeight * 0.45) + "px";
         newGameButton.addEventListener("click", startNewGame);
 
         gameCanvas.appendChild(newGameButton);
