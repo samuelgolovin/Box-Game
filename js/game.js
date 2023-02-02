@@ -60,7 +60,7 @@ window.onload = function() {
             box.className = "box";
 
             box.style.left = parseInt(Math.random() * (canvasHeight - boxSize)) + "px";
-            box.style.top = parseInt(Math.random() * (canvasWidth - 1.5*boxSize)) + "px";
+            box.style.top = parseInt(Math.random() * (canvasWidth - boxSize)) + "px";
             box.style.width = boxSize + "px";
             box.style.height = boxSize + "px";
 
