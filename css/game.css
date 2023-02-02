@@ -16,7 +16,7 @@ h1 {
 }
 
 body {
-    background: rgb(241,240,238);
+    background: var(--lightGray);
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
 }
@@ -39,7 +39,7 @@ body {
     width: var(--canvasWidth);
     height: var(--canvasHeight);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-    background-color: rgb(122,184,214);
+    background-color: var(--blue);
 }
 
 #game-area-canvas:hover {
@@ -48,20 +48,38 @@ body {
 
 .box {
     position: absolute;
-    outline: 2px solid rgb(224,71,76);
+    outline: 2px solid var(--lightRed);
     outline-offset: -4px;
-    background-color: rgb(177,26,33);
+    background-color: var(--darkRed);
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 10px;
 }
 
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
 .timer-text {
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-    top: 0;
-    right: 0;
-    color: rgb(241,240,238);
-    position: absolute;
+    margin: 5px;
+}
+
+.reset-game {
+    font-size: 18pt;
+    font-family: Tahoma, Verdana, sans-serif;
+    margin: 5px;
+    text-align: center;
+    color: var(--lightGray);
+    outline: 2px solid var(--lightRed);
+    outline-offset: -4px;
+    background-color: var(--darkRed);
+    border-radius: 5px;
+}
+
+.reset-game:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
 
 .new-game-button {
@@ -70,15 +88,14 @@ body {
     position: absolute;
     text-align: center;
     color: var(--lightGray);
-    outline: 2px solid rgb(224,71,76);
+    outline: 2px solid var(--lightRed);
     outline-offset: -4px;
-    background-color: rgb(177,26,33);
+    background-color: var(--darkRed);
     border-radius: 5px;
-    transform: scale(1);
 }
 
 .new-game-button:hover {
-    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
 }
 
 .instructions {

@@ -10,8 +10,9 @@ window.onload = function() {
     var newGameButtonWidth = 175;
     var newGameButtonHeight = 75;
     var boxSize = 75;
-    var boxCount = 20;
-    var newGame = true;
+    var totalBoxCount = 3;
+    var boxesLeft = totalBoxCount;
+    var gameStarted = false;
 
     var [milliseconds,seconds] = [0,0];
     var timerRef = document.getElementById("timer-text");
@@ -45,6 +46,7 @@ window.onload = function() {
     }
 
     function startNewGame() {
+     gameStarted = true;
         timerRef.innerHTML = "Time: 0.000";
 
         gameCanvas.innerHTML = "";
@@ -55,7 +57,7 @@ window.onload = function() {
         // gameCanvas.appendChild(timerText);
         // timerText.innerHTML = "Time: 0.000 s";
 
-        for(var i = 0; i < boxCount; i++) {
+        for(var i = 0; i < totalBoxCount; i++) {
             let box = document.createElement("div");
             box.className = "box";
 
@@ -71,25 +73,17 @@ window.onload = function() {
     }
 
     function boxClicked() {
-
-        if(newGame == true) {
-            originalNumOfBoxes = boxCount;
-
-            newGame = false;
-
-            startTimer();
-        }
+        startTimer();
         
         this.parentNode.removeChild(this);
-        boxCount--;
+        boxesLeft--;
 
-        if (boxCount <= 0) {
+        if (boxesLeft <= 0) {
             stopTimer();
-
-            newGameMenu();
             
-            boxCount = originalNumOfBoxes;
-            newGame = true;
+            boxesLeft = totalBoxCount;
+            gameStarted = false;
+            newGameMenu();
         }
     }
 
@@ -117,6 +111,14 @@ window.onload = function() {
     
         timerRef.innerHTML = "Time: " + s + "." + ms;
     }
+
+    document.getElementById("reset-game").addEventListener("click", function() {
+        stopTimer();
+        timerRef.innerHTML = "Time: 0.000";
+        boxesLeft = totalBoxCount;
+        newGameMenu();
+
+    });
 
     newGameMenu();
 
