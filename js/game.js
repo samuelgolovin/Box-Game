@@ -51,12 +51,6 @@ window.onload = function() {
 
         gameCanvas.innerHTML = "";
 
-        // let timerText = document.createElement("div");
-        // timerText.className = "timer-text";
-        // timerText.id = "timer-text";
-        // gameCanvas.appendChild(timerText);
-        // timerText.innerHTML = "Time: 0.000 s";
-
         for(var i = 0; i < totalBoxCount; i++) {
             let box = document.createElement("div");
             box.className = "box";
@@ -112,6 +106,18 @@ window.onload = function() {
         timerRef.innerHTML = "Time: " + s + "." + ms;
     }
 
+    function submitTimeToLeaderboard() {
+	var xmlhttp = new XMLHttpRequest();
+    	xmlhttp.onreadystatechange = function() {
+     	    if (this.readyState == 4 && this.status == 200) {
+        	document.getElementById("leaderboard-area").innerHTML = this.responseText;
+            }
+       	};
+
+        xmlhttp.open("GET", "getScore.php?q=", true);
+        xmlhttp.send();
+    }
+
     document.getElementById("reset-game").addEventListener("click", function() {
         stopTimer();
         timerRef.innerHTML = "Time: 0.000";
@@ -121,5 +127,6 @@ window.onload = function() {
     });
 
     newGameMenu();
+    submitTimeToLeaderboard();
 
 };

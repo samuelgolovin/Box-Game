@@ -16,8 +16,8 @@
                     <div id="timer-text" class="timer-text">Time: 0.000</div>
                     <button class="reset-game" id="reset-game">Reset Game</button>
                 </div>
-                <div id="game-area-canvas">
-                </div>
+                <div id="game-area-canvas"></div>
+		<div id="leaderboard-area"></div>
             </div> 
         </div>
 
