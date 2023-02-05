@@ -2,15 +2,13 @@
 <body>
 
 <?php
-$q = $_GET['q'];
-
 $con = mysqli_connect('localhost','username','password');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
 mysqli_select_db($con,"myDB");
-$sql="SELECT * FROM leaderboard";
+$sql="SELECT * FROM leaderboard ORDER BY time ASC LIMIT 10";
 $result = mysqli_query($con,$sql);
 
 echo "<table>

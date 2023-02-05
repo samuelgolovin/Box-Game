@@ -14,6 +14,7 @@ window.onload = function() {
     var boxesLeft = totalBoxCount;
     var gameStarted = false;
 
+    var timeToSend;
     var [milliseconds,seconds] = [0,0];
     var timerRef = document.getElementById("timer-text");
     var int = null; 
@@ -73,6 +74,15 @@ window.onload = function() {
         boxesLeft--;
 
         if (boxesLeft <= 0) {
+            if (seconds <= 999) {
+                if (milliseconds < 100) {
+                    timeToSend = seconds.toString() + ".0" + milliseconds.toString();
+                } else {
+                    timeToSend = seconds.toString() + "." + milliseconds.toString();
+                }
+                console.log(timeToSend);
+            }
+
             stopTimer();
             
             boxesLeft = totalBoxCount;
@@ -90,6 +100,7 @@ window.onload = function() {
 
     function stopTimer() {
         clearInterval(int);
+        console.log(seconds + " " + milliseconds);
         [milliseconds,seconds] = [0,0];
     }
 
@@ -106,16 +117,45 @@ window.onload = function() {
         timerRef.innerHTML = "Time: " + s + "." + ms;
     }
 
-    function submitTimeToLeaderboard() {
-	var xmlhttp = new XMLHttpRequest();
+    function getScoresToLeaderboard() {
+	    var xmlhttp = new XMLHttpRequest();
     	xmlhttp.onreadystatechange = function() {
      	    if (this.readyState == 4 && this.status == 200) {
         	document.getElementById("leaderboard-area").innerHTML = this.responseText;
             }
        	};
 
-        xmlhttp.open("GET", "getScore.php?q=", true);
+        xmlhttp.open("GET", "getScore.php");
         xmlhttp.send();
+    }
+
+    function submitScore(data) {
+        const XHR = new XMLHttpRequest();
+        const FD = new FormData();
+      
+        // Push our data into our FormData object
+        for (const [name, value] of Object.entries(data)) {
+          FD.append(name, value);
+        }
+
+        // Define what happens on successful data submission
+        XHR.addEventListener('load', (event) => {
+          //alert('Yeah! Data sent and response loaded.');
+          console.log(XHR.responseText);
+        });
+      
+        // Define what happens in case of an error
+        XHR.addEventListener('error', (event) => {
+          alert('Oops! Something went wrong.');
+        });
+      
+        // Set up our request
+        XHR.open("POST", "insert_data_handler.php", true);
+      
+        // Send our FormData object; HTTP headers are set automatically
+        XHR.send(FD);
+
+        getScoresToLeaderboard();
     }
 
     document.getElementById("reset-game").addEventListener("click", function() {
@@ -123,10 +163,9 @@ window.onload = function() {
         timerRef.innerHTML = "Time: 0.000";
         boxesLeft = totalBoxCount;
         newGameMenu();
-
     });
 
     newGameMenu();
-    submitTimeToLeaderboard();
+    submitScore("0.120,samuel");
 
 };
