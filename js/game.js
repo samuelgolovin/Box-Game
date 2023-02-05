@@ -80,6 +80,7 @@ window.onload = function() {
                 } else {
                     timeToSend = seconds.toString() + "." + milliseconds.toString();
                 }
+                submitScore(timeToSend, "Samuel");
                 console.log(timeToSend);
             }
 
@@ -129,14 +130,13 @@ window.onload = function() {
         xmlhttp.send();
     }
 
-    function submitScore(data) {
+    function submitScore(time, user) {
         const XHR = new XMLHttpRequest();
         const FD = new FormData();
       
         // Push our data into our FormData object
-        for (const [name, value] of Object.entries(data)) {
-          FD.append(name, value);
-        }
+        FD.set("time", time);
+        FD.set("user", user);
 
         // Define what happens on successful data submission
         XHR.addEventListener('load', (event) => {
@@ -166,6 +166,6 @@ window.onload = function() {
     });
 
     newGameMenu();
-    submitScore("0.120,samuel");
+    submitScore("0.120", "samuel");
 
 };
