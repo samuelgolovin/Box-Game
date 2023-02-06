@@ -80,8 +80,8 @@ window.onload = function() {
                 } else {
                     timeToSend = seconds.toString() + "." + milliseconds.toString();
                 }
-                submitScore(timeToSend, "Samuel");
-                console.log(timeToSend);
+                submitScore(timeToSend, "samuel");
+                timeToSend = null;
             }
 
             stopTimer();
@@ -166,6 +166,5 @@ window.onload = function() {
     });
 
     newGameMenu();
-    submitScore("0.120", "samuel");
 
 };
