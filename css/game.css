@@ -5,6 +5,7 @@
     --lightRed: rgb(224,71,76);
     --blue: rgb(122,184,214);
     --lightGray: rgb(241,240,238);
+    --darkGray: rgb(170, 170, 170);
 }
 
 * {
@@ -136,4 +137,24 @@ body {
         text-align: center;
         border: 2px dashed black;
     }
+}
+
+.login-sign-up-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--lightGray);
+    background-color: var(--blue);
+    cursor: pointer;
+}
+
+.login-sign-up-button:hover {
+    background-color: var(--lightRed);
+    color: var(--darkGray);
 }

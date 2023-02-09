@@ -92,6 +92,10 @@ window.onload = function() {
         }
     }
 
+    document.getElementById("login-sign-up-button").addEventListener("click", function() {
+        console.log("This Works 123")
+    });
+
     function startTimer() {
         if(int!==null){
             clearInterval(int);
