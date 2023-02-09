@@ -166,5 +166,6 @@ window.onload = function() {
     });
 
     newGameMenu();
+    getScoresToLeaderboard();
 
 };

@@ -19,6 +19,7 @@ body {
     background: var(--lightGray);
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
+    position: relative;
 }
 
 .game-container {
@@ -107,4 +108,32 @@ body {
     text-align: center;
     justify-content: center;
 
+}
+
+#leaderboard-area {
+    padding: 10px;
+    max-width: max-content;
+}
+
+@media screen and (min-width: 1215px)  {
+    #leaderboard-area {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 150px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 1214px) {
+    #leaderboard-area {
+        position: absolute;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        border: 2px dashed black;
+    }
 }
