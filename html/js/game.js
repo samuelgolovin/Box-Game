@@ -93,7 +93,7 @@ window.onload = function() {
     }
 
     document.getElementById("login-sign-up-button").addEventListener("click", function() {
-        console.log("This Works 123")
+        location.href = "html/sign_up.html";
     });
 
     function startTimer() {
