@@ -13,14 +13,18 @@ $result = mysqli_query($con,$sql);
 
 echo "<table>
 <tr>
+<th>Top</th>
 <th>Username</th>
 <th>Time</th>
 </tr>";
+$i = 1;
 while($row = mysqli_fetch_array($result)) {
   echo "<tr>";
+  echo "<td>" . $i . "</td>";
   echo "<td>" . $row['username'] . "</td>";
-  echo "<td>" ." - " .  $row['time'] . "</td>";
+  echo "<td>" ." - " .  $row['time'] . "0" . "</td>";
   echo "</tr>";
+  $i++;
 }
 echo "</table>";
 mysqli_close($con);

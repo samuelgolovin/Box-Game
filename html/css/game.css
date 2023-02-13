@@ -5,6 +5,7 @@
     --lightRed: rgb(224,71,76);
     --blue: rgb(122,184,214);
     --lightGray: rgb(241,240,238);
+    --darkGray: rgb(170, 170, 170);
 }
 
 * {
@@ -19,6 +20,7 @@ body {
     background: var(--lightGray);
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
+    position: relative;
 }
 
 .game-container {
@@ -67,6 +69,7 @@ body {
 }
 
 .reset-game {
+    padding: 5px;
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
     margin: 5px;
@@ -107,4 +110,52 @@ body {
     text-align: center;
     justify-content: center;
 
+}
+
+#leaderboard-area {
+    padding: 10px;
+    max-width: max-content;
+}
+
+@media screen and (min-width: 1215px)  {
+    #leaderboard-area {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 150px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 1214px) {
+    #leaderboard-area {
+        position: absolute;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        border: 2px dashed black;
+    }
+}
+
+.login-sign-up-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--lightGray);
+    background-color: var(--blue);
+    cursor: pointer;
+}
+
+.login-sign-up-button:hover {
+    background-color: var(--lightRed);
+    color: var(--darkGray);
 }

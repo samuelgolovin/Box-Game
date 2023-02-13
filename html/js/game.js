@@ -80,7 +80,8 @@ window.onload = function() {
                 } else {
                     timeToSend = seconds.toString() + "." + milliseconds.toString();
                 }
-                console.log(timeToSend);
+                //submitScore(timeToSend, "samuel");
+                timeToSend = null;
             }
 
             stopTimer();
@@ -90,6 +91,10 @@ window.onload = function() {
             newGameMenu();
         }
     }
+
+    document.getElementById("login-sign-up-button").addEventListener("click", function() {
+        location.href = "html/sign_up.html";
+    });
 
     function startTimer() {
         if(int!==null){
@@ -125,18 +130,17 @@ window.onload = function() {
             }
        	};
 
-        xmlhttp.open("GET", "getScore.php");
+        xmlhttp.open("GET", "html/php/getScore.php");
         xmlhttp.send();
     }
 
-    function submitScore(data) {
+    function submitScore(time, user) {
         const XHR = new XMLHttpRequest();
         const FD = new FormData();
       
         // Push our data into our FormData object
-        for (const [name, value] of Object.entries(data)) {
-          FD.append(name, value);
-        }
+        FD.set("time", time);
+        FD.set("user", user);
 
         // Define what happens on successful data submission
         XHR.addEventListener('load', (event) => {
@@ -166,6 +170,6 @@ window.onload = function() {
     });
 
     newGameMenu();
-    submitScore("0.120,samuel");
+    getScoresToLeaderboard();
 
 };
