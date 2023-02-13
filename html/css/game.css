@@ -69,6 +69,7 @@ body {
 }
 
 .reset-game {
+    padding: 5px;
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
     margin: 5px;

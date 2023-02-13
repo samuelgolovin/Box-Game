@@ -1,10 +1,18 @@
+<?php
+session_start();
+if (!$_SESSION["loggedin"]) {
+    header("location: sign_up.html");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>Box Game</title>
-        <script src="html/js/game.js" type="text/javascript"></script>
-        <link href="html/css/game.css" rel="stylesheet">
+        <script src="js/logged-in-game.js" type="text/javascript"></script>
+        <link href="css/game.css" rel="stylesheet">
     </head>
 
     <body>
@@ -21,10 +29,9 @@
             </div> 
             
         </div>
-        <button id="login-sign-up-button" class="login-sign-up-button">Login/Sign-Up</button>
-        <p>Login to be able to save your score to the leaderboard.</p>
+        <button id="logout-button" class="login-sign-up-button">Logout</button>
         <div id="leaderboard-area"></div>
-        
+        <button id="leaderboard-button">All Time Leaderboard</button>
     </body>
 
 </html>

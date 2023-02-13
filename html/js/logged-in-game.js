@@ -80,7 +80,8 @@ window.onload = function() {
                 } else {
                     timeToSend = seconds.toString() + "." + milliseconds.toString();
                 }
-                //submitScore(timeToSend, "samuel");
+                submitScore(timeToSend, "samuel");
+                getScoresToLeaderboard();
                 timeToSend = null;
             }
 
@@ -92,8 +93,11 @@ window.onload = function() {
         }
     }
 
-    document.getElementById("login-sign-up-button").addEventListener("click", function() {
-        location.href = "html/sign_up.html";
+    document.getElementById("logout-button").addEventListener("click", function() {
+        location.href = "php/logout_handler.php";
+    });
+    document.getElementById("leaderboard-button").addEventListener("click", function() {
+        window.open("leaderboard.php", "", "width=500", "height=500");
     });
 
     function startTimer() {
@@ -130,17 +134,16 @@ window.onload = function() {
             }
        	};
 
-        xmlhttp.open("GET", "html/php/getScore.php");
+        xmlhttp.open("GET", "php/getScore.php");
         xmlhttp.send();
     }
 
-    function submitScore(time, user) {
+    function submitScore(time) {
         const XHR = new XMLHttpRequest();
         const FD = new FormData();
       
         // Push our data into our FormData object
         FD.set("time", time);
-        FD.set("user", user);
 
         // Define what happens on successful data submission
         XHR.addEventListener('load', (event) => {
@@ -154,7 +157,7 @@ window.onload = function() {
         });
       
         // Set up our request
-        XHR.open("POST", "insert_data_handler.php", true);
+        XHR.open("POST", "php/insert_data_handler.php", true);
       
         // Send our FormData object; HTTP headers are set automatically
         XHR.send(FD);

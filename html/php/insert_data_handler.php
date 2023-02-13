@@ -1,14 +1,10 @@
 <?php
-var_dump($_POST);
+session_start();
+// var_dump($_SESSION["username"]);
+// var_dump($_POST);
 
-$_post_time = $_POST["time"];
-$_post_user = $_POST["user"];
-
-$time = floatval($_post_time);
-$user = $_post_user;
-
-echo $time . "\n\n";
-echo $user . "\n\n";
+$_post_time = floatval($_POST["time"]);
+$_post_user = $_SESSION["username"];
 
 $servername = "localhost";
 $username = "username";
@@ -20,7 +16,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO leaderboard (username, time) VALUES ('$user', '$time')";
+$sql = "INSERT INTO leaderboard (username, time) VALUES ('$_post_user', '$_post_time')";
 
 if ($conn->query($sql)) {
   echo "New record created successfully";
