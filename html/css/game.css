@@ -21,6 +21,7 @@ body {
     font-size: 18pt;
     font-family: Tahoma, Verdana, sans-serif;
     position: relative;
+    max-width: 
 }
 
 .game-container {
@@ -55,6 +56,7 @@ body {
     background-color: var(--darkRed);
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 10px;
+    cursor: pointer;
 }
 
 .top-container {
@@ -79,6 +81,7 @@ body {
     outline-offset: -4px;
     background-color: var(--darkRed);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .reset-game:hover {
@@ -95,6 +98,9 @@ body {
     outline-offset: -4px;
     background-color: var(--darkRed);
     border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+
 }
 
 .new-game-button:hover {
@@ -109,7 +115,6 @@ body {
     border-radius: 5px;
     text-align: center;
     justify-content: center;
-
 }
 
 #leaderboard-area {
@@ -159,3 +164,49 @@ body {
     background-color: var(--lightRed);
     color: var(--darkGray);
 }
+
+.dropbtn {
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px;
+    background-color: var(--blue);
+    color: var(--lightGray);
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.dropdown-content {
+    right: 0;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 190px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.show {display:block;}

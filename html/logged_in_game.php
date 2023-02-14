@@ -29,9 +29,18 @@ if (!$_SESSION["loggedin"]) {
             </div> 
             
         </div>
-        <button id="logout-button" class="login-sign-up-button">Logout</button>
+
+        <div class="dropdown">
+            <button id="dropdown-button" class="dropbtn">More &#x25BC;</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="profile.php" target="_blank">Profile</a>
+                <a href="leaderboard.php" target="_blank">All Time Leaderboard</a>
+                <a href="profile.php" target="_blank">About Creator</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+
         <div id="leaderboard-area"></div>
-        <button id="leaderboard-button">All Time Leaderboard</button>
     </body>
 
 </html>

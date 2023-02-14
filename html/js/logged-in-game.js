@@ -3,6 +3,24 @@
 //Samuel Golovin
 
 window.onload = function() {
+
+    document.getElementById("dropdown-button").addEventListener("click", function() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    });
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+
     var gameCanvas = document.getElementById("game-area-canvas");
 
     var canvasHeight = 640;
@@ -92,13 +110,6 @@ window.onload = function() {
             newGameMenu();
         }
     }
-
-    document.getElementById("logout-button").addEventListener("click", function() {
-        location.href = "php/logout_handler.php";
-    });
-    document.getElementById("leaderboard-button").addEventListener("click", function() {
-        window.open("leaderboard.php", "", "width=500", "height=500");
-    });
 
     function startTimer() {
         if(int!==null){
