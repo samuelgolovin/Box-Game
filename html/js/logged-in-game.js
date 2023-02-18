@@ -28,7 +28,7 @@ window.onload = function() {
     var newGameButtonWidth = 175;
     var newGameButtonHeight = 75;
     var boxSize = 75;
-    var totalBoxCount = 3;
+    var totalBoxCount = 30;
     var boxesLeft = totalBoxCount;
     var gameStarted = false;
 

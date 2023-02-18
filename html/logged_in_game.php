@@ -36,7 +36,7 @@ if (!$_SESSION["loggedin"]) {
                 <a href="profile.php" target="_blank">Profile</a>
                 <a href="leaderboard.php" target="_blank">All Time Leaderboard</a>
                 <a href="profile.php" target="_blank">About Creator</a>
-                <a href="#">Logout</a>
+                <a href="php/logout_handler.php">Logout</a>
             </div>
         </div>
 

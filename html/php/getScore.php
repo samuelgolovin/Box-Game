@@ -8,7 +8,7 @@ if (!$con) {
 }
 
 mysqli_select_db($con,"myDB");
-$sql="SELECT * FROM leaderboard ORDER BY time ASC LIMIT 10";
+$sql="SELECT username, min(time) as time FROM leaderboard GROUP BY username ORDER BY time ASC LIMIT 10";
 $result = mysqli_query($con,$sql);
 
 echo "<table>
