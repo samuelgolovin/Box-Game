@@ -42,7 +42,7 @@ $result = mysqli_query($conn, $sql);
 
             mysqli_close($conn);
             ?>
-            <tr><td><a href="#">Change Username?</a></td><td><a href="php/change_username_password_handler.php">Change Password?</a></td></tr>
+            <!-- <tr><td><a href="#">Change Username?</a></td><td><a href="php/change_username_password_handler.php">Change Password?</a></td></tr> -->
             </table>
         </div>
 
